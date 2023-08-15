@@ -1,27 +1,76 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.exhibit {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f5f5f5;
-}
-
-.exhibit h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.exhibit p {
-    font-size: 1.2rem;
-    max-width: 600px;
+#title {
     text-align: center;
-    color: #333;
-    margin: 0;
+    font-size: 70px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.room {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* this gives the divs with the class lines a line */
+.line {
+    position: absolute;
+    width: 100%;
+    border-top: 2px solid black;
+}
+
+.vertical-line {
+    position: absolute;
+    border-left: 2px solid black; /* Adjust the color and thickness as needed */
+}
+
+.line1 {
+    top: 10%;
+    width: 50%;
+    left: 25%;
+}
+
+.line2 {
+    width: 50%;
+    left: 25%;
+    top: 70%;
+}
+
+.line3 {
+    left: 25%;
+    top: 10%;
+    height: 60%;
+}
+
+.line4 {
+    left: 75%;
+    top: 10%;
+    height: 60%;
+}
+
+.line5 {
+    width: 25%;
+    left: 37.5%;
+    top: 30%;
+}
+
+.line6 {
+    height: 40%;
+    left: 37.5%;
+    top: 30%;
+}
+
+.line7 {
+    height: 40%;
+    left: 62.5%;
+    top: 30%;
+}
+
+.line8 {
+    height: 60%;
+    left: 20%;
+}
+
+.line9 {
+    height: 60%;
+    left: 80%;
 }
