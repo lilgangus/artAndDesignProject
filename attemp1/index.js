@@ -18,37 +18,31 @@ function animateRoom() {
         line3.style.top = `${0.5 + scroll * 0.01}%`;
         line4.style.top = `${0.5 + scroll * 0.01}%`;
 
+        // door sides
+
         line6.style.height = `${4.5 + scroll * 0.01}%`;
         line7.style.height = `${4.5 + scroll * 0.01}%`;
 
+        // room back sides
         line8.style.top = `${scroll * 0.0166}%`;
-        line8.style.left = `${20 + scroll * 0.066}%`;
-
+        line8.style.left = `${20.2 + scroll * 0.066}%`;
         line9.style.top = `${scroll * 0.0166}%`;
-        line9.style.left = `${80 - scroll * 0.066}%`;
+        line9.style.left = `${79.8 - scroll * 0.066}%`;
 
+        // room back top
         line10.style.top = `${scroll * 0.0166}%`;
-        line10.style.left = `${20 + scroll * 0.066}%`;
-        line10.style.width = `${60 - scroll * 0.132}%`;
-        
+        line10.style.left = `${20.2 + scroll * 0.066}%`;
+        line10.style.width = `${60 - scroll * 0.132 - 0.4}%`;
 
-        // line5.style.transform = `translateY(${scroll * 0.3}px)`;
-        // line6.style.transform = `translateY(${scroll * 0.3}px)`;
-        // line6.style.height = `${40 + scroll * 0.025}%`;
-        // line7.style.transform = `translateY(${scroll * 0.3}px)`;
-        // line7.style.height = `${40 + scroll * 0.025}%`;
+    } else if(scroll < 150) {
+        // make the back lines dissapear
+        line10.style.left = `1000%`;
+        line9.style.left = `1000%`;
+        line8.style.left = `1000%`;
 
-    } else {
-        // line1.style.transform = `translateY(0px)`;
-        // line2.style.transform = `translateY(0px)`;
-        // line3.style.transform = `translateY(0px)`;
-        // line4.style.transform = `translateY(0px)`;
-    
-        // line5.style.transform = `translateY(0px)`;
-        // line6.style.transform = `translateY(0px)`;
-        // line6.style.height = `40%`;
-        // line7.style.transform = `translateY(0px)`;
-        // line7.style.height = `40%`;
+        // make room larger
+        line1.style.width = `${50 + scroll * 0.132}%`;
+        line1.style.left = `${25 - scroll * 0.066}%`;
     }
   
 
