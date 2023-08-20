@@ -33,32 +33,36 @@ renderer.render(scene, camera)
 
 // scence.add(torus)
 
-const pointLight = new THREE.PointLight(0xffffff, 10000)
+const pointLight = new THREE.PointLight(0xffffff, 50000)
 pointLight.position.set(200,200,200)
 
-const pointLight1 = new THREE.PointLight(0xffffff, 10000)
+const pointLight1 = new THREE.PointLight(0xffffff, 50000)
 pointLight1.position.set(1, 1, 300)
 
 // this light will illuminate the side of the building that is facing the camera
-const pointLight2 = new THREE.PointLight(0xffffff, 100000)
+const pointLight2 = new THREE.PointLight(0xffffff, 50000)
 pointLight2.position.set(1, 1, -300)
 
-const pointLight3 = new THREE.PointLight(0xffffff, 100000)
+const pointLight3 = new THREE.PointLight(0xffffff, 50000)
 pointLight3.position.set(300, 1, 1)
 
-const pointLight4 = new THREE.PointLight(0xffffff, 100000)
+const pointLight4 = new THREE.PointLight(0xffffff, 50000)
 pointLight4.position.set(-300, 1, 1)
 
+const pointLight5 = new THREE.PointLight(0xffffff, 50000)
+pointLight5.position.set(300, 1, -300)
 
-scene.add(pointLight, pointLight1, pointLight2 )
-scene.add(pointLight3, pointLight4)
+scene.add(pointLight, pointLight1, pointLight2, pointLight3, pointLight4, pointLight5 )
 
-// const lightHelper = new THREE.PointLightHelper(pointLight)
+const lightHelper = new THREE.PointLightHelper(pointLight5)
+const lightHelper1 = new THREE.PointLightHelper(pointLight3)
 
-// scence.add(lightHelper)
+scene.add(lightHelper, lightHelper1)
 
 // the grid helper is a plane with grid lines on it, the first parameter is the size of the plane, the second is the number of divisions in the grid
 const gridHelper = new THREE.GridHelper(500,100) 
+// gridHelper.position.x = 300
+// gridHelper.position.z = -300
 scene.add(gridHelper)
 
 // make the camera rotate when scrolling
