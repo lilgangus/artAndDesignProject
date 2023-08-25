@@ -13,57 +13,35 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 
 // create a renderer with the canvas element, the renderer is what draws the scene onto the canvas element
 const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#bg')
-
+  canvas: document.querySelector('#bg'),
+  antialias: true,
 })
 
 // set the pixel ratio to the device's pixel ratio
 renderer.setPixelRatio(window.devicePixelRatio)
 // set the size of the renderer to the size of the window
 renderer.setSize(window.innerWidth, window.innerHeight)
+
+renderer.shadows = true;
+renderer.shadowType = 1;
+renderer.shadowMap.enabled = true;
+renderer.toneMapping = 0
+// renderer.useLegacyLights = true
+renderer.toneMapping = THREE.NoToneMapping;
+renderer.setClearColor(0x000000, 0)
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
 camera.position.setZ(300)
 camera.position.setX(0)
 camera.position.setY(100)
 
 renderer.render(scene, camera)
 
-// const geometry = new THREE.TorusGeometry(10,3,16,100)
-// const material = new THREE.MeshStandardMaterial({color: 0xFF6347})
-// const torus = new THREE.Mesh(geometry, material)
-
-// scence.add(torus)
-
-const pointLight = new THREE.PointLight(0xffffff, 50000)
-pointLight.position.set(200,200,200)
-
-const pointLight1 = new THREE.PointLight(0xffffff, 50000)
-pointLight1.position.set(1, 1, 300)
-
-// this light will illuminate the side of the building that is facing the camera
-const pointLight2 = new THREE.PointLight(0xffffff, 50000)
-pointLight2.position.set(1, 1, -300)
-
-const pointLight3 = new THREE.PointLight(0xffffff, 50000)
-pointLight3.position.set(300, 1, 1)
-
-const pointLight4 = new THREE.PointLight(0xffffff, 50000)
-pointLight4.position.set(-300, 1, 1)
-
-const pointLight5 = new THREE.PointLight(0xffffff, 50000)
-pointLight5.position.set(300, 1, -300)
-
-scene.add(pointLight, pointLight1, pointLight2, pointLight3, pointLight4, pointLight5 )
-
-const lightHelper = new THREE.PointLightHelper(pointLight5)
-const lightHelper1 = new THREE.PointLightHelper(pointLight3)
-
-scene.add(lightHelper, lightHelper1)
-
 // the grid helper is a plane with grid lines on it, the first parameter is the size of the plane, the second is the number of divisions in the grid
 const gridHelper = new THREE.GridHelper(500,100) 
 // gridHelper.position.x = 300
 // gridHelper.position.z = -300
-scene.add(gridHelper)
+// scene.add(gridHelper)
 
 // make the camera rotate when scrolling
 const controls = new OrbitControls(camera, renderer.domElement)
@@ -77,7 +55,7 @@ controls.autoRotate = true
 //   const [x,y,z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100))
 
 //   star.position.set(x,y,z)
-//   scence.add(star)
+//   scene.add(star)
 // }
 
 // Array(200).fill().forEach(addStar)
@@ -85,7 +63,7 @@ controls.autoRotate = true
 const loader = new GLTFLoader();
 
 loader.load(
-  'musuem.gltf',
+  'museum1.gltf',
   function (gltf) {
 
     scene.add(gltf.scene);
