@@ -125,9 +125,10 @@ animationScripts.push({
 })
 
 function playScrollAnimations(scripts) {
-  // console.log("scrollPercent", scrollPercent)
+  console.log("scrollPercent", scrollPercent)
+  
   scripts.forEach((script) => {
-    if (scrollPercent >= animate.start && scrollPercent <= script.end) {
+    if (scrollPercent >= script.start && scrollPercent <= script.end) {
       script.function()
     }
   })
@@ -163,7 +164,7 @@ function animate() {
   requestAnimationFrame(animate)
 
   playScrollAnimations(animationScripts)
-  console.log(scrollPercent)
+  // console.log(scrollPercent)
 
   renderer.render(scene, camera)
 
