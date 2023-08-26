@@ -2,9 +2,13 @@ import './style.css'
 
 import * as THREE from 'three'
 
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import {
+  OrbitControls
+} from 'three/examples/jsm/controls/OrbitControls'
 
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import {
+  GLTFLoader
+} from 'three/examples/jsm/loaders/GLTFLoader'
 
 const scene = new THREE.Scene()
 
@@ -15,6 +19,14 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
   antialias: true,
+})
+
+// this is to dynamically resize the renderer when the window is resized
+window.addEventListener('resize', () => {
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  camera.aspect = window.innerWidth / window.innerHeight
+
+  camera.updateProjectionMatrix()
 })
 
 // set the pixel ratio to the device's pixel ratio
@@ -31,21 +43,21 @@ renderer.toneMapping = THREE.NoToneMapping;
 renderer.setClearColor(0x000000, 0)
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-camera.position.setZ(300)
-camera.position.setX(0)
-camera.position.setY(100)
+camera.position.setZ(-200)
+camera.position.setX(-325)
+camera.position.setY(200)
+camera.lookAt(0, 0, 0)
 
 renderer.render(scene, camera)
 
-// the grid helper is a plane with grid lines on it, the first parameter is the size of the plane, the second is the number of divisions in the grid
-const gridHelper = new THREE.GridHelper(500,100) 
+// a plane to help see the floor
+const gridHelper = new THREE.GridHelper(500, 100)
 // gridHelper.position.x = 300
 // gridHelper.position.z = -300
-// scene.add(gridHelper)
+scene.add(gridHelper)
 
 // make the camera rotate when scrolling
-const controls = new OrbitControls(camera, renderer.domElement)
-controls.autoRotate = true
+// const controls = new OrbitControls(camera, renderer.domElement)
 
 // function addStar() {
 //   const geometry = new THREE.SphereGeometry(0.5, 32, 32)
@@ -83,25 +95,83 @@ loader.load(
   }
 );
 
-
-
 const spaceTexture = new THREE.TextureLoader().load('space.jpg')
 scene.background = spaceTexture
+
+// function for linear interpolation between two values with the ratiobetween being the ratio between the two values
+function linearInterp(min, max, ratioBetween) {
+  return (1 - ratioBetween) * min + ratioBetween * max
+
+}
+
+// used to scale a value between two values for the linear interpolation function
+function scalePercent(start, end) {
+  return (scrollPercent - start) / (end - start)
+}
+
+// using an array to hold the animation scripts, then running the array through a function to run the animation scripts
+const animationScripts = []
+
+animationScripts.push({
+  start: 0,
+  end: 40,
+  function: () => {
+    // maybe replace 0,0,0 with museum.position
+    camera.lookAt(0, 0, 0)
+    camera.position.x = linearInterp(-325, 0, scalePercent(0, 40))
+    console.log("runinng")
+    camera.lookAt(0, 0, 0)
+  }
+})
+
+function playScrollAnimations(scripts) {
+  // console.log("scrollPercent", scrollPercent)
+  scripts.forEach((script) => {
+    if (scrollPercent >= animate.start && scrollPercent <= script.end) {
+      script.function()
+    }
+  })
+}
+
+// this var is used to store the scroll percentage
+// let scrollPercent = 0
+
+// this function is used to update the scroll percentage
+// document.body.onscroll = () => {
+//   // scrollPercent = ((document.documentElement.scrollTop || document.body.scrollTop) /( (document.documentElement.scrollHeight || document.body.scrollHeight) - document.documentElement.clientHeight)) * 100;
+
+//   // (document.getElementById("scrollPercent") as HTMLDivElement).innerText = 'Scroll Progress: ' + scrollPercent.toFixed(2) + '%';
+
+//   scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+//   scrollPercentElement.innerText = 'Scroll Progress: ' + scrollPercent.toFixed(2) + '%';
+
+// }
+let scrollPercent = 0;
+
+document.body.onscroll = () => {
+  // calculate the current scroll progress as a percentage
+  scrollPercent =
+    ((document.documentElement.scrollTop || document.body.scrollTop) / ((document.documentElement.scrollHeight || document.body.scrollHeight) - document.documentElement.clientHeight)) * 100;
+
+  document.getElementById('scrollProgress').innerText =
+    'Scroll Progress : ' + scrollPercent.toFixed(2);
+};
+
 
 // created animate function to render the scene again every time there is a screen refresh
 function animate() {
   requestAnimationFrame(animate)
 
-  // torus.rotation.x += 0.01
-  // torus.rotation.y += 0.005
-  // torus.rotation.z += 0.01
-
-
-
-  controls.update()
-
+  playScrollAnimations(animationScripts)
+  console.log(scrollPercent)
 
   renderer.render(scene, camera)
+
 }
+
+window.scrollTo({
+  top: 0,
+  behavior: 'smooth'
+})
 
 animate()
