@@ -52,8 +52,9 @@ renderer.render(scene, camera)
 
 // a plane to help see the floor
 const gridHelper = new THREE.GridHelper(500, 100)
-// gridHelper.position.x = 300
+gridHelper.position.x = -300
 // gridHelper.position.z = -300
+
 scene.add(gridHelper)
 
 // make the camera rotate when scrolling
@@ -114,13 +115,14 @@ const animationScripts = []
 
 animationScripts.push({
   start: 0,
-  end: 40,
+  end: 30,
   function: () => {
     // maybe replace 0,0,0 with museum.position
     camera.lookAt(0, 0, 0)
-    camera.position.x = linearInterp(-325, 0, scalePercent(0, 40))
-    console.log("runinng")
-    camera.lookAt(0, 0, 0)
+    camera.position.x = linearInterp(-325, -150, scalePercent(0, 30))
+    camera.position.y = linearInterp(200, 60, scalePercent(0, 30))
+    camera.position.z = linearInterp(-200, -25, scalePercent(0, 30))
+    camera.lookAt(0, 60, 0)
   }
 })
 
