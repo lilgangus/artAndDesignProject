@@ -115,14 +115,37 @@ const animationScripts = []
 
 animationScripts.push({
   start: 0,
-  end: 30,
+  end: 10,
   function: () => {
+    const ratio = scalePercent(0, 10)
     // maybe replace 0,0,0 with museum.position
     camera.lookAt(0, 0, 0)
-    camera.position.x = linearInterp(-325, -150, scalePercent(0, 30))
-    camera.position.y = linearInterp(200, 60, scalePercent(0, 30))
-    camera.position.z = linearInterp(-200, -25, scalePercent(0, 30))
+    camera.position.x = linearInterp(-325, -150, ratio)
+    camera.position.y = linearInterp(200, 60, ratio)
+    camera.position.z = linearInterp(-200, -25, ratio)
     camera.lookAt(0, 60, 0)
+  }
+})
+
+animationScripts.push({
+  start: 10,
+  end: 20,
+  function: () => {
+    const ratio = scalePercent(10, 20)
+    camera.position.x = linearInterp(-150, -105, ratio)
+    camera.position.z = linearInterp(-25, 20, ratio)
+    camera.lookAt(linearInterp(0, -80, ratio), 60, linearInterp(0, 135, ratio))
+  }
+})
+
+animationScripts.push({
+  start: 20,
+  end: 30,
+  function: () => {
+    const ratio  = scalePercent(20, 30)
+
+    camera.position.x = linearInterp(-105, -80, ratio)
+    camera.position.z = linearInterp(20, 80, ratio)
   }
 })
 
