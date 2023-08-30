@@ -346,6 +346,91 @@ document.body.onscroll = () => {
 };
 
 
+// function for linear interpolation between two values with the ratiobetween being the ratio between the two values
+function linearInterp(min, max, ratioBetween) {
+  return (1 - ratioBetween) * min + ratioBetween * max
+
+}
+
+// used to scale a value between two values for the linear interpolation function
+function scalePercent(start, end) {
+  return (scrollPercent - start) / (end - start)
+}
+
+// using an array to hold the animation scripts, then running the array through a function to run the animation scripts
+const animationScripts = []
+
+animationScripts.push({
+  start: 0,
+  end: 10,
+  function: () => {
+    const ratio = scalePercent(0, 10)
+    // maybe replace 0,0,0 with museum.position
+    camera.lookAt(0, 0, 0)
+    camera.position.x = linearInterp(-325, -150, ratio)
+    camera.position.y = linearInterp(200, 60, ratio)
+    camera.position.z = linearInterp(-200, -25, ratio)
+    camera.lookAt(0, 60, 0)
+  }
+})
+
+animationScripts.push({
+  start: 10,
+  end: 20,
+  function: () => {
+    const ratio = scalePercent(10, 20)
+    camera.position.x = linearInterp(-150, -105, ratio)
+    camera.position.z = linearInterp(-25, 20, ratio)
+    camera.lookAt(linearInterp(0, -80, ratio), 60, linearInterp(0, 135, ratio))
+  }
+})
+
+animationScripts.push({
+  start: 20,
+  end: 30,
+  function: () => {
+    const ratio  = scalePercent(20, 30)
+
+    camera.position.x = linearInterp(-105, -80, ratio)
+    camera.position.z = linearInterp(20, 80, ratio)
+  }
+})
+
+function playScrollAnimations(scripts) {
+  console.log("scrollPercent", scrollPercent)
+  
+  scripts.forEach((script) => {
+    if (scrollPercent >= script.start && scrollPercent <= script.end) {
+      script.function()
+    }
+  })
+}
+
+// this var is used to store the scroll percentage
+// let scrollPercent = 0
+
+// this function is used to update the scroll percentage
+// document.body.onscroll = () => {
+//   // scrollPercent = ((document.documentElement.scrollTop || document.body.scrollTop) /( (document.documentElement.scrollHeight || document.body.scrollHeight) - document.documentElement.clientHeight)) * 100;
+
+//   // (document.getElementById("scrollPercent") as HTMLDivElement).innerText = 'Scroll Progress: ' + scrollPercent.toFixed(2) + '%';
+
+//   scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+//   scrollPercentElement.innerText = 'Scroll Progress: ' + scrollPercent.toFixed(2) + '%';
+
+// }
+let scrollPercent = 0;
+
+document.body.onscroll = () => {
+  // calculate the current scroll progress as a percentage
+  scrollPercent =
+    ((document.documentElement.scrollTop || document.body.scrollTop) / ((document.documentElement.scrollHeight || document.body.scrollHeight) - document.documentElement.clientHeight)) * 100;
+
+  document.getElementById('scrollProgress').innerText =
+    'Scroll Progress : ' + scrollPercent.toFixed(2);
+};
+
+
 // created animate function to render the scene again every time there is a screen refresh
 function animate() {
   requestAnimationFrame(animate)
