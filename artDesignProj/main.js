@@ -301,9 +301,9 @@ animationScripts.push({
 
 animationScripts.push({
   start: 95,
-  end: 98,
+  end: 99,
   function: () => {
-    const ratio = scalePercent(95, 98)
+    const ratio = scalePercent(95, 99)
 
     camera.position.x = linearInterp(4, -76, ratio)
     camera.position.z = linearInterp(-125, -160, ratio)

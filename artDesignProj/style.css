@@ -37,8 +37,9 @@ section {
   position: relative;
   text-align: center;
 }
-/* 
+
 #textColor {
   color: #ffffff;
-} */
+  background-color: black;
+}
 
