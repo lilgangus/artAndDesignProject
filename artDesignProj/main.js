@@ -227,6 +227,8 @@ animationScripts.push({
   end: 70, 
   function: () => {
     const ratio = scalePercent(65, 70)
+    
+    camera.position.z = linearInterp(-80, -65, ratio)
 
     camera.lookAt(linearInterp(192, 270, ratio), 60, linearInterp(-4, -70, ratio))
   }
@@ -238,8 +240,8 @@ animationScripts.push({
   function: () => {
     const ratio = scalePercent(70, 75)
 
-    camera.position.x = linearInterp(200, 130, ratio)
-    camera.position.z = linearInterp(-80 ,-134, ratio)
+    camera.position.x = linearInterp(195, 130, ratio)
+    camera.position.z = linearInterp(-65 ,-134, ratio)
 
     camera.lookAt(linearInterp(270, 195, ratio), 60, linearInterp(-70, -200, ratio))
   }
