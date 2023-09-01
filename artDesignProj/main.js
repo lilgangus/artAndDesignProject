@@ -3,10 +3,6 @@ import './style.css'
 import * as THREE from 'three'
 
 import {
-  OrbitControls
-} from 'three/examples/jsm/controls/OrbitControls'
-
-import {
   GLTFLoader
 } from 'three/examples/jsm/loaders/GLTFLoader'
 import { inverseLerp } from 'three/src/math/MathUtils'
@@ -50,23 +46,6 @@ camera.position.setY(200)
 camera.lookAt(0, 0, 0)
 
 renderer.render(scene, camera)
-
-
-// make the camera rotate when scrolling
-// const controls = new OrbitControls(camera, renderer.domElement)
-
-// function addStar() {
-//   const geometry = new THREE.SphereGeometry(0.5, 32, 32)
-//   const material = new THREE.MeshStandardMaterial({color: 0xFFFFFF})
-//   const star = new THREE.Mesh(geometry, material)
-
-//   const [x,y,z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100))
-
-//   star.position.set(x,y,z)
-//   scene.add(star)
-// }
-
-// Array(200).fill().forEach(addStar)
 
 const loader = new GLTFLoader();
 
@@ -323,19 +302,6 @@ function playScrollAnimations(scripts) {
   })
 }
 
-// this var is used to store the scroll percentage
-// let scrollPercent = 0
-
-// this function is used to update the scroll percentage
-// document.body.onscroll = () => {
-//   // scrollPercent = ((document.documentElement.scrollTop || document.body.scrollTop) /( (document.documentElement.scrollHeight || document.body.scrollHeight) - document.documentElement.clientHeight)) * 100;
-
-//   // (document.getElementById("scrollPercent") as HTMLDivElement).innerText = 'Scroll Progress: ' + scrollPercent.toFixed(2) + '%';
-
-//   scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-//   scrollPercentElement.innerText = 'Scroll Progress: ' + scrollPercent.toFixed(2) + '%';
-
-// }
 let scrollPercent = 0;
 
 document.body.onscroll = () => {
@@ -347,6 +313,49 @@ document.body.onscroll = () => {
     'Progress : ' + scrollPercent.toFixed(2) + "%";
 };
 
+
+const sphere = new THREE.SphereGeometry(0.5, 32, 32)
+const material = new THREE.MeshBasicMaterial({
+  color: 0xffffff
+})
+const star = new THREE.Mesh(sphere, material)
+star.position.set(-176, 170, -290)
+scene.add(star)
+
+
+function addStars() {
+  const sphere = new THREE.SphereGeometry(0.5, 32, 32)
+  const material = new THREE.MeshBasicMaterial({
+    color: 0xffffff
+  })
+
+  const star = new THREE.Mesh(sphere, material)
+  const positio = generateStarLocation(-260, 400, -75, 166, -325, 250)
+
+  star.position.set(positio[0], positio[1], positio[2])
+  scene.add(star)
+}
+
+Array(700).fill().forEach(addStars)
+
+// this function generates a location for a star that is not inside the xMin, xMax .. (the musuem model)
+function generateStarLocation(xMin, xMax, yMin, yMax, zMin, zMax) {
+  let position = []
+
+  for(let i = 0; i < 3; i++) {
+    if(Math.random() < 0.5) {
+      position.push((-500)*Math.random())
+    } else {
+      position.push(500*Math.random())
+    }
+  }
+
+  if(position[0] < xMax && position[0] > xMin && position[1] < yMax && position[1] > yMin && position[2] < zMax && position[2] > zMin) {
+    position = generateStarLocation()
+  }
+
+  return position
+}
 
 // created animate function to render the scene again every time there is a screen refresh
 function animate() {
