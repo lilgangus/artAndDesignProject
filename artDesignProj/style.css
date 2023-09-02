@@ -43,3 +43,23 @@ section {
   background-color: black;
 }
 
+#blinking {
+  background: rgb(0, 0, 0);
+  animation: blink-text 1.9s linear infinite;
+}
+
+@keyframes blinking {
+  0% {
+   opacity: 0;
+  }
+  50% {
+   opacity: 1;
+  }
+  100% {
+   opacity: 0;
+  }
+}
+
+#blinking-Text {
+  animation: blinking 3s linear infinite;
+}

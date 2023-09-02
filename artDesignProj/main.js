@@ -102,13 +102,26 @@ animationScripts.push({
 })
 
 animationScripts.push({
-  start: 10,
+  start: 10, 
+  end: 12, 
+  function: () => {
+    const ratio = scalePercent(10, 12)
+
+    camera.position.x = linearInterp(-150, -132, ratio)
+    camera.position.z = linearInterp(-25, -7, ratio)
+
+    camera.lookAt(linearInterp(0, -70, ratio), 60, linearInterp(0, -10, ratio))
+  }
+})
+
+animationScripts.push({
+  start: 12,
   end: 15,
   function: () => {
-    const ratio = scalePercent(10, 15)
-    camera.position.x = linearInterp(-150, -105, ratio)
-    camera.position.z = linearInterp(-25, 20, ratio)
-    camera.lookAt(linearInterp(0, -80, ratio), 60, linearInterp(0, 135, ratio))
+    const ratio = scalePercent(12, 15)
+    camera.position.x = linearInterp(-132, -105, ratio)
+    camera.position.z = linearInterp(-7, 20, ratio)
+    camera.lookAt(linearInterp(-70, -80, ratio), 60, linearInterp(-10, 135, ratio))
   }
 })
 
@@ -143,7 +156,8 @@ animationScripts.push({
   function: () => {
     const ratio = scalePercent(35, 40)
 
-    camera.position.x = linearInterp(-30, -8, ratio)
+    camera.position.x = linearInterp(-30, -9, ratio)
+    camera.position.z = linearInterp(140, 160, ratio)
     camera.lookAt(linearInterp(-95, -8, ratio), 60, linearInterp(180, 225, ratio))
   }
 })
@@ -154,8 +168,8 @@ animationScripts.push({
   function: () => {
     const ratio = scalePercent(40, 45)
 
-    camera.position.x = linearInterp(-8, 31, ratio) 
-    camera.position.z = linearInterp(140, 130, ratio)
+    camera.position.x = linearInterp(-9, 35, ratio) 
+    camera.position.z = linearInterp(160, 140, ratio)
     
     camera.lookAt(linearInterp(-8, 95, ratio), 60, linearInterp(225, 167, ratio))
   }
@@ -167,8 +181,8 @@ animationScripts.push({
   function: () => {
     const ratio = scalePercent(45, 50)
 
-    camera.position.x = linearInterp(31, 61, ratio)
-    camera.position.z = linearInterp(130, 65, ratio)
+    camera.position.x = linearInterp(35, 50, ratio)
+    camera.position.z = linearInterp(140, 85, ratio)
 
     camera.lookAt(linearInterp(95, 120, ratio), 60, linearInterp(167, 65, ratio))
   }
@@ -180,10 +194,10 @@ animationScripts.push({
   function: () => {
     const ratio = scalePercent(50, 55)
 
-    camera.position.x = linearInterp(61, 91, ratio)
-    camera.position.z = linearInterp(65, 10, ratio)
+    camera.position.x = linearInterp(50, 91, ratio)
+    camera.position.z = linearInterp(85, 10, ratio)
 
-    camera.lookAt(linearInterp(120, 100, ratio), 60, linearInterp(65, -55, ratio))
+    camera.lookAt(linearInterp(120, 75, ratio), 60, linearInterp(65, -41, ratio))
   }
 })
 
@@ -197,9 +211,19 @@ animationScripts.push({
     camera.position.z = linearInterp(10, -80, ratio)
 
     // the camera is a bit finiky, maybe try breaking into two parts
-    camera.lookAt(linearInterp(100, 192, ratio), 60, linearInterp(-55, -4, ratio))
+    camera.lookAt(linearInterp(75, 192, ratio), 60, linearInterp(-41, -4, ratio))
   }
 })
+
+// animationScripts.push({
+//   start: 60,
+//   end: 65, 
+//   function: () => {
+//     const ratio = scalePerent(60, 65)
+
+//     camera.position = linearInterp 
+//   }
+// })
 
 animationScripts.push({
   start: 65, 
