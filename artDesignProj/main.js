@@ -328,25 +328,17 @@ document.body.onscroll = () => {
 };
 
 
-const sphere = new THREE.SphereGeometry(0.5, 32, 32)
-const material = new THREE.MeshBasicMaterial({
-  color: 0xffffff
-})
-const star = new THREE.Mesh(sphere, material)
-star.position.set(-176, 170, -290)
-scene.add(star)
-
-
 function addStars() {
+
   const sphere = new THREE.SphereGeometry(0.5, 32, 32)
   const material = new THREE.MeshBasicMaterial({
     color: 0xffffff
   })
 
   const star = new THREE.Mesh(sphere, material)
-  const positio = generateStarLocation(-260, 400, -75, 166, -325, 250)
+  let position = generateStarLocation(-260, 400, -75, 166, -325, 250)
 
-  star.position.set(positio[0], positio[1], positio[2])
+  star.position.set(position[0], position[1], position[2])
   scene.add(star)
 }
 
@@ -365,7 +357,7 @@ function generateStarLocation(xMin, xMax, yMin, yMax, zMin, zMax) {
   }
 
   if(position[0] < xMax && position[0] > xMin && position[1] < yMax && position[1] > yMin && position[2] < zMax && position[2] > zMin) {
-    position = generateStarLocation()
+    position = generateStarLocation(-260, 400, -75, 166, -325, 250)
   }
 
   return position
