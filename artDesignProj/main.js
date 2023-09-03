@@ -50,7 +50,7 @@ renderer.render(scene, camera)
 const loader = new GLTFLoader();
 
 loader.load(
-  'museum3.gltf',
+  '/museum3.gltf',
   function (gltf) {
 
     scene.add(gltf.scene);
@@ -70,7 +70,7 @@ loader.load(
   }
 );
 
-const spaceTexture = new THREE.TextureLoader().load('space1.jpg')
+// const spaceTexture = new THREE.TextureLoader().load('space1.jpg')
 // scene.background = spaceTexture
 
 // function for linear interpolation between two values with the ratiobetween being the ratio between the two values
@@ -210,20 +210,10 @@ animationScripts.push({
     camera.position.x = linearInterp(90, 195 , ratio)
     camera.position.z = linearInterp(10, -80, ratio)
 
-    // the camera is a bit finiky, maybe try breaking into two parts
     camera.lookAt(linearInterp(75, 192, ratio), 60, linearInterp(-41, -4, ratio))
   }
 })
 
-// animationScripts.push({
-//   start: 60,
-//   end: 65, 
-//   function: () => {
-//     const ratio = scalePerent(60, 65)
-
-//     camera.position = linearInterp 
-//   }
-// })
 
 animationScripts.push({
   start: 65, 
@@ -360,7 +350,7 @@ function addStars() {
   scene.add(star)
 }
 
-Array(700).fill().forEach(addStars)
+Array(1000).fill().forEach(addStars)
 
 // this function generates a location for a star that is not inside the xMin, xMax .. (the musuem model)
 function generateStarLocation(xMin, xMax, yMin, yMax, zMin, zMax) {
