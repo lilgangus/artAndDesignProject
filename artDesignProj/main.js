@@ -62,8 +62,16 @@ loader.load(
   },
 
   function (xhr) {
-    console.log((xhr.loaded / xhr.total * 100) + '% loaded')
-    console.log(xhr.loaded, xhr.total)
+    console.log(((xhr.loaded / xhr.total) * 100) + '% loaded')
+    console.log(((xhr.loaded/29869488) * 100) + '% loaded fixed')
+
+    let title = document.getElementById("Title")
+    
+    if(xhr.loaded < 29869488) {
+      title.innerText = "Wait For the Page to Load! " + ((xhr.loaded/xhr.total) * 100).toFixed(5) + "% loaded"
+    } else {
+      title.innerText = "A Journey Through Korea"
+    }
   },
 
   function (error) {
