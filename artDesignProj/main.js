@@ -62,8 +62,9 @@ loader.load(
   },
 
   function (xhr) {
-    console.log(((xhr.loaded / xhr.total) * 100) + '% loaded', xhr.total)
-    console.log(((xhr.loaded/29869488) * 100) + '% loaded fixed')
+    // console.log(((xhr.loaded / xhr.total) * 100) + '% loaded', xhr.total) 
+    // xhr.total for some reason is 0, so we are going to be setting it as a fixed value of 29869488
+    console.log(((xhr.loaded/29869488) * 100) + '% loaded fixed') 
 
     let title = document.getElementById("Title")
     
@@ -109,6 +110,7 @@ animationScripts.push({
     camera.lookAt(0, 60, 0)
   }
 })
+
 
 animationScripts.push({
   start: 10, 
