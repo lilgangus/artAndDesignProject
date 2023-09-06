@@ -63,3 +63,10 @@ section {
 #blinking-Text {
   animation: blinking 3s linear infinite;
 }
+
+#lastImage {
+  position: relative;
+  text-align: center;
+  width: 33vw;
+  height: auto;
+}
