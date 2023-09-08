@@ -6,6 +6,8 @@ import {
   GLTFLoader
 } from 'three/examples/jsm/loaders/GLTFLoader'
 
+import { inject } from '@vercel/analytics';
+
 const scene = new THREE.Scene()
 
 // the first parameter is the field of view, the second is the aspect ratio, the third is the near clipping plane, and the fourth is the far clipping plane.
@@ -436,3 +438,4 @@ window.scrollTo({
 })
 
 animate()
+inject();
