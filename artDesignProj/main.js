@@ -6,7 +6,7 @@ import {
   GLTFLoader
 } from 'three/examples/jsm/loaders/GLTFLoader'
 
-import { inject } from '@vercel/analytics';
+import { inject } from '@vercel/analytics'
 
 const scene = new THREE.Scene()
 
