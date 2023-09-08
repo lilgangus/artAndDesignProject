@@ -96,6 +96,7 @@ function scalePercent(start, end) {
 
 // using an array to hold the animation scripts, then running the array through a function to run the animation scripts
 const animationScripts = []
+const banner = document.getElementById("banner")
 
 animationScripts.push({
   start: 0,
@@ -108,6 +109,10 @@ animationScripts.push({
     camera.position.y = linearInterp(200, 60, ratio)
     camera.position.z = linearInterp(-200, -25, ratio)
     camera.lookAt(0, 60, 0)
+
+    banner.innerHTML = "Leaving The Dawn Of Light"
+    banner.style.opacity = linearInterp(0, 1, ratio)
+    
   }
 })
 
@@ -122,6 +127,8 @@ animationScripts.push({
     camera.position.z = linearInterp(-25, -7, ratio)
 
     camera.lookAt(linearInterp(0, -70, ratio), 60, linearInterp(0, -10, ratio))
+
+    banner.style.opacity = linearInterp(1, 0, ratio)
   }
 })
 
@@ -133,6 +140,8 @@ animationScripts.push({
     camera.position.x = linearInterp(-132, -105, ratio)
     camera.position.z = linearInterp(-7, 20, ratio)
     camera.lookAt(linearInterp(-70, -80, ratio), 60, linearInterp(-10, 135, ratio))
+
+    banner.style.opacity = 0
   }
 })
 
@@ -158,6 +167,10 @@ animationScripts.push({
     camera.position.z = linearInterp(80, 140, ratio)
 
     camera.lookAt(linearInterp(-80, -95, ratio), 60, linearInterp(135, 180, ratio))
+
+    banner.innerHTML = "Journeying into the Dense Night"
+
+    banner.style.opacity = linearInterp(0, 1, ratio)
   }
 })
 
@@ -170,6 +183,7 @@ animationScripts.push({
     camera.position.x = linearInterp(-30, -9, ratio)
     camera.position.z = linearInterp(140, 160, ratio)
     camera.lookAt(linearInterp(-95, -8, ratio), 60, linearInterp(180, 225, ratio))
+
   }
 })
 
@@ -183,6 +197,8 @@ animationScripts.push({
     camera.position.z = linearInterp(160, 140, ratio)
     
     camera.lookAt(linearInterp(-8, 95, ratio), 60, linearInterp(225, 167, ratio))
+
+    banner.style.opacity = linearInterp(1, 0, ratio)
   }
 })
 
@@ -196,6 +212,8 @@ animationScripts.push({
     camera.position.z = linearInterp(140, 85, ratio)
 
     camera.lookAt(linearInterp(95, 120, ratio), 60, linearInterp(167, 65, ratio))
+
+    banner.style.opacity = 0
   }
 })
 
@@ -209,6 +227,10 @@ animationScripts.push({
     camera.position.z = linearInterp(85, 10, ratio)
 
     camera.lookAt(linearInterp(120, 75, ratio), 60, linearInterp(65, -41, ratio))
+
+    banner.innerHTML = "Drifting from Light to Night"
+
+    banner.style.opacity = linearInterp(0, 1, ratio)
   }
 })
 
@@ -248,6 +270,8 @@ animationScripts.push({
     camera.position.z = linearInterp(-65 ,-134, ratio)
 
     camera.lookAt(linearInterp(270, 195, ratio), 60, linearInterp(-70, -200, ratio))
+
+    banner.style.opacity = linearInterp(1, 0, ratio)
   }
 })
 
@@ -262,6 +286,9 @@ animationScripts.push({
     camera.position.z = linearInterp(-134, -200, ratio)
 
     camera.lookAt(linearInterp(195, 65, ratio), 60, linearInterp(-200, -270, ratio))
+
+    banner.innerHTML = "From the Chaos to Calm"
+    banner.style.opacity = linearInterp(0, 1, ratio)
   }
 }) 
 
@@ -274,6 +301,9 @@ animationScripts.push({
     camera.position.x = linearInterp(64, 80, ratio)
 
     camera.lookAt(linearInterp(65, 0, ratio), 60, linearInterp(-270, -200, ratio))
+    
+    banner.style.opacity = linearInterp(1, 0, ratio)
+
   }
 })
 
@@ -287,6 +317,8 @@ animationScripts.push({
     camera.position.z = linearInterp(-200, -145, ratio)
 
     camera.lookAt(linearInterp(0, 43, ratio), 60, linearInterp(-200, -90, ratio))
+
+    banner.style.opacity = 0
   }
 }) 
 
@@ -300,6 +332,9 @@ animationScripts.push({
     camera.position.z = linearInterp(-145, -125, ratio)
 
     camera.lookAt(linearInterp(43, -55, ratio), 60, linearInterp(-90, -100, ratio))
+    
+    banner.innerHTML = "A New Day Starts From A New Dawn Of Light"
+    banner.style.opacity = linearInterp(0, 1, ratio)
   } 
 })
 
@@ -313,6 +348,16 @@ animationScripts.push({
     camera.position.z = linearInterp(-125, -160, ratio)
 
     camera. lookAt(linearInterp(-55, -176, ratio), linearInterp(60, 170, ratio), linearInterp(-100, -290, ratio))
+    
+    banner.style.opacity = linearInterp(1, 0, ratio)
+  }
+})
+
+animationScripts.push({
+  start: 97,
+  end: 100,
+  function: () => {
+    banner.style.opacity = 0
   }
 })
 

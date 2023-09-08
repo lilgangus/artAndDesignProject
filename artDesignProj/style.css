@@ -38,7 +38,7 @@ section {
   text-align: center;
 }
 
-#textColor {
+#mainBody {
   color: #ffffff;
   background-color: black;
 }
@@ -67,6 +67,16 @@ section {
 #lastImage {
   position: relative;
   text-align: center;
-  width: 33vw;
+  width: 25vw;
   height: auto;
+}
+
+.centeredMessage {
+  position: fixed;
+  top: 80%;
+  /* left: 2%; */
+  /* transform: translate(-50%, -50%); */
+  font-size: 2.5vh;
+  color: #ffffff;
+  z-index: 99;
 }
