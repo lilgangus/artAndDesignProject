@@ -5,7 +5,6 @@ import * as THREE from 'three'
 import {
   GLTFLoader
 } from 'three/examples/jsm/loaders/GLTFLoader'
-import { inverseLerp } from 'three/src/math/MathUtils'
 
 const scene = new THREE.Scene()
 
@@ -80,8 +79,6 @@ loader.load(
   }
 );
 
-// const spaceTexture = new THREE.TextureLoader().load('space1.jpg')
-// scene.background = spaceTexture
 
 // function for linear interpolation between two values with the ratiobetween being the ratio between the two values
 function linearInterp(min, max, ratioBetween) {
@@ -98,6 +95,7 @@ function scalePercent(start, end) {
 const animationScripts = []
 const banner = document.getElementById("banner")
 
+// we are adding scripts to the animationScripts array that triggers different events when we are in a different section of the museum
 animationScripts.push({
   start: 0,
   end: 10,
@@ -361,7 +359,7 @@ animationScripts.push({
   }
 })
 
-
+// this function runs all the animation scripts by running the script in the array associated with the part of the museum someone is in
 function playScrollAnimations(scripts) {
   // console.log("scrollPercent", scrollPercent)
   
@@ -384,6 +382,7 @@ document.body.onscroll = () => {
 };
 
 
+// this function adds a star somewhere random that is not inside of the museum
 function addStars() {
 
   const sphere = new THREE.SphereGeometry(0.5, 32, 32)
@@ -398,6 +397,7 @@ function addStars() {
   scene.add(star)
 }
 
+// we run the addStars() 1000 times to generate 1000 random stars
 Array(1000).fill().forEach(addStars)
 
 // this function generates a location for a star that is not inside the xMin, xMax .. (the musuem model)
