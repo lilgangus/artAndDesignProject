@@ -69,7 +69,7 @@ section {
   text-align: center;
   width: 25vw;
   height: auto;
-  z-index: 99;
+  /* z-index: 99; */
 }
 
 .centeredMessage {
